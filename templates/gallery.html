@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
+  <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: 'Roboto', sans-serif;
+      background-color: #000; /* Changed to black */
+      color: #fff;
+    }
+
+    .gallery-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .gallery {
+      margin: 5px;
+      border: 2px solid #fff; /* Changed to white */
+      width: 270px; /* Adjust this to change the size of the videos */
+      border-radius: 15px; /* This gives the videos rounded edges */
+      overflow: hidden; /* This makes sure the video corners are also rounded */
+      background-color: #000; /* Changed to black */
+    }
+
+    .gallery:hover {
+      border: 2px solid #777;
+    }
+
+    .gallery video {
+      width: 100%;
+      height: auto;
+    }
+
+    .desc {
+      padding: 15px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="gallery-container">
+    {% for media in media_files %}
+    <div class="gallery">
+      <video width="600" height="400" controls>
+        <source src="{{ url_for('static', filename=media.src) }}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    {% endfor %}
+  </div>
+
+</body>
+</html>
